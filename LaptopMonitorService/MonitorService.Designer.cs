@@ -1,6 +1,6 @@
 ﻿namespace LaptopMonitorService
 {
-    partial class Service1
+    partial class MonitorService
     {
         /// <summary> 
         /// Required designer variable.

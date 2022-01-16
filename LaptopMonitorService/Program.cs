@@ -17,7 +17,7 @@ namespace LaptopMonitorService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new MonitorService()
             };
             ServiceBase.Run(ServicesToRun);
         }
