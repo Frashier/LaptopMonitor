@@ -9,7 +9,10 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LaptopMonitorInstaller", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFMonitorLibrary", "WCFMonitorLibrary\WCFMonitorLibrary.csproj", "{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaptopMonitorGUI", "LaptopMonitorGUI\LaptopMonitorGUI.csproj", "{97B16FD8-2BF5-44F6-A6BB-F9B698D13FEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{5A5C0576-5CB0-492D-9A4E-473906867656}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E} = {4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +30,10 @@ Global
 		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97B16FD8-2BF5-44F6-A6BB-F9B698D13FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97B16FD8-2BF5-44F6-A6BB-F9B698D13FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97B16FD8-2BF5-44F6-A6BB-F9B698D13FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97B16FD8-2BF5-44F6-A6BB-F9B698D13FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A5C0576-5CB0-492D-9A4E-473906867656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5C0576-5CB0-492D-9A4E-473906867656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5C0576-5CB0-492D-9A4E-473906867656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5C0576-5CB0-492D-9A4E-473906867656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
