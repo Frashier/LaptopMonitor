@@ -55,19 +55,24 @@ namespace LaptopMonitorService
 
         protected override void OnStart(string[] args)
         {
+            LaptopMonitorLog.WriteEntry("MonitorService started");
             try
             {
                 Host.Open();
+                LaptopMonitorLog.WriteEntry("WCF host opened");
             } 
             catch (Exception)
             {
                 Host.Abort();
+                LaptopMonitorLog.WriteEntry("Error encountered when opening a host");
             }
             
         }
 
         protected override void OnStop()
         {
+            LaptopMonitorLog.WriteEntry("MonitorService stopped");
+
             try
             {
                 Host.Close();
@@ -76,6 +81,8 @@ namespace LaptopMonitorService
             {
                 Host.Abort();
             }
+
+            LaptopMonitorLog.WriteEntry("WCF host closed");
         }
     }
 }
