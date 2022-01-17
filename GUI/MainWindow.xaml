@@ -17,6 +17,6 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="ConsoleTextBlock" Grid.Column="1" Background="Gray" HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="125" Width="513"/>
+        <TextBlock x:Name="ConsoleTextBlock" Grid.Column="1" Background="LightGray" HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="125" Width="513" FontSize="18" FontFamily="Calibri"/>
     </Grid>
 </Window>

@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using GUI.ServiceReference1;
+﻿using System;
+using System.Windows;
 
 namespace GUI
 {
@@ -8,13 +8,24 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        WCFServiceClient Client;
-
+        WCFClient CommunicationClient;
         public MainWindow()
         {
             InitializeComponent();
-            Client = new WCFServiceClient();
-            ConsoleTextBlock.Text = Client.Echo("Test");
+            try
+            {
+                CommunicationClient = new WCFClient();
+                WriteToConsole("Connection with service estabilished");
+            }
+            catch (Exception e)
+            {
+                WriteToConsole("Error during starting service");
+            }
+        }
+
+        private void WriteToConsole(string message)
+        {
+            ConsoleTextBlock.Text += "[" + DateTime.Now.ToString() + "]: " + message + "\n";
         }
     }
 }
