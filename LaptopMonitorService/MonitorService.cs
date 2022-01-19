@@ -13,14 +13,14 @@ namespace LaptopMonitorService
     {
         private readonly EventLog LaptopMonitorLog;
         private readonly System.Timers.Timer ReadValuesTimer;
-        private readonly JsonFile jsonFile;
+        private readonly JsonFile<MonitoringRecord> jsonFile;
         private readonly OpenHardwareMonitor.Hardware.Computer _Computer;
 
         public MonitorService()
         {
             LaptopMonitorLog = SetupEventLog(ConfigurationManager.AppSettings["EventLogName"], ConfigurationManager.AppSettings["SourceName"]);
             _Computer = new OpenHardwareMonitor.Hardware.Computer { CPUEnabled = true };
-            jsonFile = new JsonFile(ConfigurationManager.AppSettings["DatabasePath"]);
+            jsonFile = new JsonFile<MonitoringRecord>(ConfigurationManager.AppSettings["DatabasePath"]);
             ReadValuesTimer = SetupTimer();
             InitializeComponent();
         }
@@ -48,7 +48,7 @@ namespace LaptopMonitorService
         {
             var status = SystemInformation.PowerStatus;
 
-            JsonData data = new JsonData
+            MonitoringRecord data = new MonitoringRecord
             {
                 Name = "Charge",
                 Value = status.BatteryLifePercent

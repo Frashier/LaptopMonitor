@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using System;
 using Newtonsoft.Json;
 
 namespace LaptopMonitorLibrary
