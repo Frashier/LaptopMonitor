@@ -2,36 +2,59 @@
 using System.ServiceProcess;
 using System.Threading;
 using System.Configuration;
-using WCFMonitorLibrary;
-using System.ServiceModel;
-using System.ServiceModel.Description;
 using System;
+using System.Timers;
+using System.Windows.Forms;
+using LaptopMonitorLibrary;
 
 namespace LaptopMonitorService
 {
     public partial class MonitorService : ServiceBase
     {
         private readonly EventLog LaptopMonitorLog;
-        private readonly ServiceHost Host;
+        private readonly System.Timers.Timer ReadValuesTimer;
+        private readonly JsonFile jsonFile;
+        private readonly OpenHardwareMonitor.Hardware.Computer _Computer;
 
         public MonitorService()
         {
             LaptopMonitorLog = SetupEventLog(ConfigurationManager.AppSettings["EventLogName"], ConfigurationManager.AppSettings["SourceName"]);
-            Host = SetupHost(new Uri(ConfigurationManager.AppSettings["BaseAddress"]));
-
+            _Computer = new OpenHardwareMonitor.Hardware.Computer { CPUEnabled = true };
+            jsonFile = new JsonFile(ConfigurationManager.AppSettings["DatabasePath"]);
+            ReadValuesTimer = SetupTimer();
             InitializeComponent();
         }
 
-        private ServiceHost SetupHost(Uri baseAddress)
+        private System.Timers.Timer SetupTimer()
         {
-            ServiceHost host = new ServiceHost(typeof(WCFService), baseAddress);
-            host.AddServiceEndpoint(typeof(IWCFService), new WSHttpBinding(), "WCFService");
+            int interval;
+            try
+            {
+                interval = Int32.Parse(ConfigurationManager.AppSettings["ReadInterval"]);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
 
-            ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-            smb.HttpGetEnabled = true;
-            host.Description.Behaviors.Add(smb);
+            System.Timers.Timer timer = new System.Timers.Timer(interval);
+            timer.Elapsed += ReadValues;
+            timer.AutoReset = true;
 
-            return host;
+            return timer;
+        }
+
+        private void ReadValues(Object source, ElapsedEventArgs e)
+        {
+            var status = SystemInformation.PowerStatus;
+
+            JsonData data = new JsonData
+            {
+                Name = "Charge",
+                Value = status.BatteryLifePercent
+            };
+
+            jsonFile.Append(data);
         }
 
         /// <summary>
@@ -56,33 +79,13 @@ namespace LaptopMonitorService
         protected override void OnStart(string[] args)
         {
             LaptopMonitorLog.WriteEntry("MonitorService started");
-            try
-            {
-                Host.Open();
-                LaptopMonitorLog.WriteEntry("WCF host opened");
-            } 
-            catch (Exception)
-            {
-                Host.Abort();
-                LaptopMonitorLog.WriteEntry("Error encountered when opening a host");
-            }
-            
+            ReadValuesTimer.Enabled = true;
         }
 
         protected override void OnStop()
         {
             LaptopMonitorLog.WriteEntry("MonitorService stopped");
-
-            try
-            {
-                Host.Close();
-            }
-            catch (Exception)
-            {
-                Host.Abort();
-            }
-
-            LaptopMonitorLog.WriteEntry("WCF host closed");
+            ReadValuesTimer.Enabled = false;
         }
     }
 }

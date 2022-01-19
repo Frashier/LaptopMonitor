@@ -7,12 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaptopMonitorService", "Lap
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LaptopMonitorInstaller", "LaptopMonitorInstaller\LaptopMonitorInstaller.vdproj", "{A8230DFC-B343-4801-80B5-615A6C1BA2BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFMonitorLibrary", "WCFMonitorLibrary\WCFMonitorLibrary.csproj", "{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{5A5C0576-5CB0-492D-9A4E-473906867656}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E} = {4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaptopMonitorLibrary", "LaptopMonitorLibrary\LaptopMonitorLibrary.csproj", "{9419C7B6-5553-4EBE-902E-032A31DAF396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{B552964F-E215-4911-83F5-60663A4E5CA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,14 +25,18 @@ Global
 		{1E197FEA-9690-4DAB-AD55-F84D077742FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8230DFC-B343-4801-80B5-615A6C1BA2BD}.Debug|Any CPU.ActiveCfg = Debug
 		{A8230DFC-B343-4801-80B5-615A6C1BA2BD}.Release|Any CPU.ActiveCfg = Release
-		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F89F3C6-6C7D-4622-A84C-246FA4F1E71E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A5C0576-5CB0-492D-9A4E-473906867656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A5C0576-5CB0-492D-9A4E-473906867656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A5C0576-5CB0-492D-9A4E-473906867656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A5C0576-5CB0-492D-9A4E-473906867656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9419C7B6-5553-4EBE-902E-032A31DAF396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9419C7B6-5553-4EBE-902E-032A31DAF396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9419C7B6-5553-4EBE-902E-032A31DAF396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9419C7B6-5553-4EBE-902E-032A31DAF396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B552964F-E215-4911-83F5-60663A4E5CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B552964F-E215-4911-83F5-60663A4E5CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B552964F-E215-4911-83F5-60663A4E5CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B552964F-E215-4911-83F5-60663A4E5CA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
