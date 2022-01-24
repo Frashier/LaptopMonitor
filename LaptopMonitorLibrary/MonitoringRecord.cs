@@ -8,7 +8,7 @@ namespace LaptopMonitorLibrary
 {
     public class MonitoringRecord
     {
-        public string Name { get; set; }
-        public float Value { get; set; }
+        public DateTime Date;
+        public float Charge { get; set; }
     }
 }

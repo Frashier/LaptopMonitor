@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:GUI"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="WindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -17,6 +18,9 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="ConsoleTextBlock" Grid.Column="1" Background="LightGray" HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="125" Width="513" FontSize="18" FontFamily="Calibri"/>
+        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Height="37" Width="123" Click="UpdateButton_Click"/>
+        <Button x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="37" Width="123" Click="ClearButton_Click"/>
+        <CheckBox x:Name="RunCheckBox" Content="Run Service" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Unchecked="RunCheckBox_Unchecked" Checked="RunCheckBox_Checked"/>
+
     </Grid>
 </Window>

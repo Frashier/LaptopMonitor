@@ -50,8 +50,8 @@ namespace LaptopMonitorService
 
             MonitoringRecord data = new MonitoringRecord
             {
-                Name = "Charge",
-                Value = status.BatteryLifePercent
+                Date = DateTime.Now,
+                Charge = status.BatteryLifePercent
             };
 
             jsonFile.Append(data);
