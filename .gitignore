@@ -6,6 +6,9 @@
 # Test project
 TestApp/
 
+# Unit tests
+UnitTests/
+
 # User-specific files
 *.rsuser
 *.suo

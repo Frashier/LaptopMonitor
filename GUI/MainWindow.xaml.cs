@@ -8,6 +8,8 @@ using System.Linq;
 using System.Windows.Controls;
 using System.ServiceProcess;
 using System.Windows.Media;
+using System;
+using System.IO;
 
 namespace GUI
 {
@@ -24,7 +26,17 @@ namespace GUI
 
         public MainWindow()
         {
-            Records = new JsonFile<MonitoringRecord>(ConfigurationManager.AppSettings["DatabasePath"]);
+            try
+            {
+                Records = new JsonFile<MonitoringRecord>(ConfigurationManager.AppSettings["DatabasePath"]);
+            }
+            catch (Exception)
+            {
+                var systemPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                var filepath = Path.Combine(systemPath, "database.json");
+                Records = new JsonFile<MonitoringRecord>(filepath);
+            }
+
             InitializeComponent();
 
             // Create charge chart

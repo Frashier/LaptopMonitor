@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
+using System.Runtime;
 
 namespace LaptopMonitorLibrary
 {
@@ -10,7 +11,7 @@ namespace LaptopMonitorLibrary
         /// <summary>
         /// Path to .json file
         /// </summary>
-        public readonly string Path;
+        public readonly string FilePath;
         /// <summary>
         /// Whether data should be overwritten on exceeding max size or just rejected
         /// </summary>
@@ -20,16 +21,21 @@ namespace LaptopMonitorLibrary
         {
             get
             {
-                    return JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(Path)) ?? new List<T>();
+                    return JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(FilePath)) ?? new List<T>();
             }
         }
 
-        public JsonFile(string path, int maxSize = -1)
+        public JsonFile(string path)
         {
-            Path = path;
-            if (!File.Exists(Path))
+            if (!Uri.IsWellFormedUriString(Path.GetFileNameWithoutExtension(path), UriKind.RelativeOrAbsolute))
             {
-                File.WriteAllText(Path, "[]");
+                throw new ArgumentException();
+            }
+
+            FilePath = path;
+            if (!File.Exists(FilePath))
+            {
+                File.WriteAllText(FilePath, "[]");
             }
         }
 
@@ -43,7 +49,7 @@ namespace LaptopMonitorLibrary
             buffer.Add(data);
 
             string json = JsonConvert.SerializeObject(buffer);
-            File.WriteAllText(Path, json);
+            File.WriteAllText(FilePath, json);
         }
 
         /// <summary>
@@ -61,7 +67,7 @@ namespace LaptopMonitorLibrary
             { }
 
             string json = JsonConvert.SerializeObject(buffer);
-            File.WriteAllText(Path, json);
+            File.WriteAllText(FilePath, json);
         }
 
         /// <summary>
@@ -69,7 +75,7 @@ namespace LaptopMonitorLibrary
         /// </summary>
         public void Clear()
         {
-            File.WriteAllText(Path, "[]");
+            File.WriteAllText(FilePath, "[]");
         }
     }
 }

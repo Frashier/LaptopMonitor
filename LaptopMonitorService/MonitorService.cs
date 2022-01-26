@@ -5,6 +5,7 @@ using System.Configuration;
 using System;
 using System.Timers;
 using LaptopMonitorLibrary;
+using System.IO;
 
 namespace LaptopMonitorService
 {
@@ -17,7 +18,19 @@ namespace LaptopMonitorService
         public MonitorService()
         {
             LaptopMonitorLog = SetupEventLog(ConfigurationManager.AppSettings["EventLogName"], ConfigurationManager.AppSettings["SourceName"]);
-            jsonFile = new JsonFile<MonitoringRecord>(ConfigurationManager.AppSettings["DatabasePath"]);
+
+            try
+            {
+                jsonFile = new JsonFile<MonitoringRecord>(ConfigurationManager.AppSettings["DatabasePath"]);
+
+            }
+            catch (Exception)
+            {
+                var systemPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                var filepath = Path.Combine(systemPath, "database.json");
+                jsonFile = new JsonFile<MonitoringRecord>(filepath);
+            }
+
             ReadValuesTimer = SetupTimer();
             InitializeComponent();
         }
