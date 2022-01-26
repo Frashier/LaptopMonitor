@@ -4,7 +4,6 @@ using System.Threading;
 using System.Configuration;
 using System;
 using System.Timers;
-using System.Windows.Forms;
 using LaptopMonitorLibrary;
 
 namespace LaptopMonitorService
@@ -14,12 +13,10 @@ namespace LaptopMonitorService
         private readonly EventLog LaptopMonitorLog;
         private readonly System.Timers.Timer ReadValuesTimer;
         private readonly JsonFile<MonitoringRecord> jsonFile;
-        private readonly OpenHardwareMonitor.Hardware.Computer _Computer;
 
         public MonitorService()
         {
             LaptopMonitorLog = SetupEventLog(ConfigurationManager.AppSettings["EventLogName"], ConfigurationManager.AppSettings["SourceName"]);
-            _Computer = new OpenHardwareMonitor.Hardware.Computer { CPUEnabled = true };
             jsonFile = new JsonFile<MonitoringRecord>(ConfigurationManager.AppSettings["DatabasePath"]);
             ReadValuesTimer = SetupTimer();
             InitializeComponent();
@@ -46,15 +43,8 @@ namespace LaptopMonitorService
 
         private void ReadValues(Object source, ElapsedEventArgs e)
         {
-            var status = SystemInformation.PowerStatus;
-
-            MonitoringRecord data = new MonitoringRecord
-            {
-                Date = DateTime.Now,
-                Charge = status.BatteryLifePercent
-            };
-
-            jsonFile.Append(data);
+            SystemInfo SysInfo = new SystemInfo();
+            jsonFile.Append(SysInfo.GetSystemInfo());
         }
 
         /// <summary>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LaptopMonitorLibrary
 {
@@ -10,5 +6,7 @@ namespace LaptopMonitorLibrary
     {
         public DateTime Date;
         public float Charge { get; set; }
+        public float AverageCPUTemp { get; set; }
+        public float AverageCPUClock { get; set; }
     }
 }

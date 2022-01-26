@@ -32,9 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="OpenHardwareMonitorLib">
+      <HintPath>..\OpenHardwareMonitorLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +50,8 @@
     <Compile Include="JsonFile.cs" />
     <Compile Include="MonitoringRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemInfo.cs" />
+    <Compile Include="UpdateVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

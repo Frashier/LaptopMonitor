@@ -12,10 +12,6 @@ namespace LaptopMonitorLibrary
         /// </summary>
         public readonly string Path;
         /// <summary>
-        /// Max size of the database
-        /// </summary>
-        public int MaxSize;
-        /// <summary>
         /// Whether data should be overwritten on exceeding max size or just rejected
         /// </summary>
         public bool OverwriteData;
@@ -30,8 +26,11 @@ namespace LaptopMonitorLibrary
 
         public JsonFile(string path, int maxSize = -1)
         {
-            MaxSize = maxSize;
             Path = path;
+            if (!File.Exists(Path))
+            {
+                File.WriteAllText(Path, "[]");
+            }
         }
 
         /// <summary>
@@ -42,20 +41,6 @@ namespace LaptopMonitorLibrary
         {
             List<T> buffer = Data;
             buffer.Add(data);
-
-            if (buffer.Count > MaxSize)
-            {
-                if (!OverwriteData)
-                {
-                    return;
-                }
-
-                // Correct record number
-                while (buffer.Count > MaxSize)
-                {
-                    buffer.RemoveAt(0);
-                }
-            }
 
             string json = JsonConvert.SerializeObject(buffer);
             File.WriteAllText(Path, json);
